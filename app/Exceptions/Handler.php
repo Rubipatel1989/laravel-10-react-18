@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Validation\UnauthorizedException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -45,6 +48,19 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (Exception $e, Request $request) {
+            if($request->is('api/*')){
+                $data['exception_message'] = $e->getMessage();
+                $data['exception_code'] = $e->getCode();
+                $data['exception_line'] = $e->getLine();
+                $data['exception_file'] = $e->getFile();
+                //\Log::error("Exception Message:" . json(['data'=>$data]));
+
+                return response()->json(["error" => true, 'message' => $data['exception_message'], 'data' => $data], 403);
+
+            }
         });
     }
 }
