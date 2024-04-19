@@ -10,4 +10,4 @@ Link - https://www.youtube.com/watch?v=hvtcQE8Gshs
 7. php artisan jwt:secret
 8. php artisan make:controller AuthController
 
-20:40
+26:00
