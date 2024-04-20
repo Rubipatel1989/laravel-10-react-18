@@ -103,7 +103,7 @@ class CustomerController extends Controller
                 'first_name'=> 'required|string|max:255',
                 'last_name'=> 'required|string|max:255',
                 'email'=> 'required|string|max:255|unique:customers,email,' . $id,
-                'phone_number'=> 'required|string|max:10|min:10|unique:customer,phone_number,' . $id,
+                'phone_number'=> 'required|string|max:10|min:10|unique:customers,phone_number,' . $id,
                 'zip_code'=> 'required|string|max:6|min:6',
             ]);
             if($validator->fails()){
@@ -111,7 +111,8 @@ class CustomerController extends Controller
             } 
             DB::beginTransaction();
             $updateCustomerData = $validator->validated();
-            $data['customer'] = Customer::update($updateCustomerData);
+            Customer::find($id)->update($updateCustomerData);
+            $data['customer'] = Customer::find($id);
             DB::commit();
 
             return $this->sendResponse("Customer updated successfully.", $data, 201);
