@@ -46,13 +46,14 @@ class CustomerController extends Controller
                 'first_name'=> 'required|string|max:255',
                 'last_name'=> 'required|string|max:255',
                 'email'=> 'required|string|max:255|unique:customers,email',
-                'phone_number'=> 'required|string|max:10|min:10|unique:customer,phone_number',
+                'phone_number'=> 'required|string|max:10|min:10|unique:customers,phone_number',
                 'zip_code'=> 'required|string|max:6|min:6',
             ]);
             if($validator->fails()){
                 return $this->sendError("Please enter valid input data", $validator->errors(),400);
-            } 
-            DB::beginTransaction();
+            }
+
+            DB::beginTransaction();           
             $data['customer'] = Customer::create($validator->validated());
             DB::commit();
             return $this->sendResponse("List fetch successfully.", $data, 201);
