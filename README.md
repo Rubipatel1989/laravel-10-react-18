@@ -9,7 +9,7 @@ Link - https://www.youtube.com/watch?v=hvtcQE8Gshs
 6. php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 7. php artisan jwt:secret
 8. php artisan make:controller AuthController
-9. npm start
+9. npm start   (First Go to Folder my-react-18-app then run this commond)
 10. php artisan serve
 
 1:02:57
