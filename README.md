@@ -9,5 +9,9 @@ Link - https://www.youtube.com/watch?v=hvtcQE8Gshs
 6. php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 7. php artisan jwt:secret
 8. php artisan make:controller AuthController
+9. npm start
+10. php artisan serve
 
-36:40
+1:02:57
+
+
